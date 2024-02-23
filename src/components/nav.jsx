@@ -1,19 +1,57 @@
-import React from 'react'
-import { Navbar } from 'react-navbar-menu'
+import Header from 'react-header-responsive';
+import logo from './favicon.webp';
 
-const Header = () => {
+function App() {
+  const pages = [
+    {
+      name: 'About',
+      link: '/about',
+    },
+    {
+      name: 'Products',
+      children: [
+        {
+          name: 'Product-1',
+          link: '/product1',
+        },
+        {
+          name: 'Product-2',
+          link: '/product2',
+        },
+        {
+          name: 'Product-3',
+          link: '/product3',
+        },
+      ],
+    },
+    {
+      name: 'Pricing',
+      link: '/pricing',
+    },
+  ];
+
+  const Access = () => {
     return (
-        <div>
-            <Navbar IconColor={'yellow'} MenuNumber={4} Center={true} Position={'bottom'}
-                url1={'#home'}icon1={"bx bx-home-alt"} 
-                url2={'#aboutme'}icon2={"bx bx-book-alt"} 
-                url3={'/contact'}icon3={"bx bx-user"} 
-                url4={'#skills'}icon4={"bx bx-pin"} 
-                backgroundColor={"#151c28"} degree={`to bottom`} 
-                gradcolor1={'#a595e9'} gradcolor2={'#a595e933'}/>
-   
-        </div>
-    )
-}
+      <div>
+        <button>Sign Up</button>
+        <button>Sign In</button>
+      </div>
+    );
+  };
 
-export default Header
+  return (
+    <>
+      <Header
+        home={<img src={logo} alt="RHR logo" />}
+        pages={pages}
+        anchor={(link, name, className) => (
+          <Link href={link} className={className}>
+            {name}
+          </Link>
+        )}
+        access={<Access />}
+        overlap
+      />
+    </>
+  );
+}
